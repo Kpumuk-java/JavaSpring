@@ -2,46 +2,46 @@ package ru.started.spring.mvc.model;
 
 public class Product {
 
-    private long ID;
+    private long id;
     private String name;
     private double cost;
-    private static long count = 1;
+    //private static long count = 1;
 
-    public Product (String name, double cost) {
-        this.ID = count++;
+    public Product (long id, String name, double cost) {
+        this.id = id;
         this.name = name;
         this.cost = cost;
     }
 
-    public long getId() {
-        return ID;
+    public Product() {
     }
 
-    public Product setId(long id) {
-        this.ID = id;
-        return this;
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getName() {
         return name;
     }
 
-    public Product setName(String name) {
+    public void setName(String name) {
         this.name = name;
-        return this;
     }
 
     public double getCost() {
         return cost;
     }
 
-    public Product setCost(double cost) {
+    public void setCost(double cost) {
         this.cost = cost;
-        return this;
     }
 
     @Override
     public String toString() {
-        return String.format("%7d %20s %15.2f", ID, name, cost);
+        return String.format("%7d %20s %15.2f", id, name, cost);
     }
 }
