@@ -14,7 +14,7 @@
 <body>
 <div class="container">
     <h1>Список продуктов:</h1>
-    <table th:if="${frontProduct.size() > 0}" class="table">
+    <table th:if="${products.size() > 0}" class="table">
         <thead>
         <tr>
             <td>Id</td>
@@ -25,16 +25,16 @@
         </thead>
         <tbody>
 
-        <tr th:each="p : ${frontProduct}">
+        <tr th:each="p : ${products.size()}">
             <td th:text="${p.id}"></td>
-            <td th:text="${p.name}"></td>
+            <td th:text="${p.title}"></td>
             <td th:text="${p.cost}"></td>
             <td><a class="btn btn-danger" th:href="@{'/product/remove/' + ${p.id}}">Удалить</a></td>
         </tr>
         </tbody>
     </table>
-    <h1 th:unless="${frontProduct.size() > 0}">Продуктов нет</h1>
-    <span th:if="${frontProduct.size() > 0}" th:text="'Количество продуктов: ' + ${frontProduct.size()}"/>
+    <h1 th:unless="${products.size() > 0}">Продуктов нет</h1>
+    <span th:if="${products.size() > 0}" th:text="'Количество продуктов: ' + ${products.size()}"/>
     <form th:action="@{'/product/add'}" method="post">
         <!-- GET http://localhost:8189/app/boxes/add?id=10&color=red&size=20 -->
         <label>id</label>

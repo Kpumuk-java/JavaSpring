@@ -1,13 +1,10 @@
-package ru.spring.boot.JavaSpringBoot.repositories;
+package ru.spring.boot.repositories;
 
 import org.springframework.stereotype.Component;
-import ru.spring.boot.JavaSpringBoot.model.Product;
+import ru.spring.boot.model.Product;
 
 import javax.annotation.PostConstruct;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 /*
 * Разобраться с примером проекта на Spring MVC;
@@ -43,15 +40,8 @@ public class ProductRepositories {
         return Collections.unmodifiableList(products);
     }
 
-    public Product findProduct(Long id) {
-        if (products != null) {
-            for (Product p : products) {
-                if (p.getId().equals(id)) {
-                    return p;
-                }
-            }
-        }
-        return null;
+    public Optional<Product> findById(Long id) {
+        return products.stream().filter(p -> p.getId().equals(id)).findFirst();
     }
 
     public Product saveOrUpdate(Product product) {
@@ -63,10 +53,17 @@ public class ProductRepositories {
                 }
             }
         }
-        Long newId = products.stream().mapToLong(Product::getId).max().getAsLong() + 1L;
+        Long newId = products.stream().mapToLong(Product::getId).max().orElse(0L) + 1L;
+        product.setId(newId);
         products.add(product);
         return product;
     }
+
+    public void deleteById (Long id) {
+        products.removeIf(p -> p.getId().equals(id));
+    }
+
+
 
 
 }
