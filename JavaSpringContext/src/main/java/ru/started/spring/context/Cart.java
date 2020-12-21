@@ -1,8 +1,9 @@
-package ru.started.spring.context;
+package ru.spring.hibernate;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
+import ru.spring.hibernate.repositories.ProductRepository;
 
 import javax.annotation.PostConstruct;
 import java.util.ArrayList;

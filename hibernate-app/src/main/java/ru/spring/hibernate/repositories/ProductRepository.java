@@ -1,33 +1,27 @@
 package ru.spring.hibernate.repositories;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import ru.spring.hibernate.dao.ProductDAO;
 import ru.spring.hibernate.model.Product;
 
-import java.util.ArrayList;
+import javax.annotation.PostConstruct;
 import java.util.Collections;
 import java.util.List;
 
 @Component
 public class ProductRepository {
     private List<Product> list;
+    private ProductDAO productDAO;
 
-    @PostConstruct
-    private void init () {
-        list = new ArrayList<>();
-        list.add(new Product("apple",  102.20));
-        list.add(new Product("orange", 200.00));
-        list.add(new Product("banana",  78.00));
-        list.add(new Product("pineapple",  300.50));
-        list.add(new Product("kiwi",  88.80));
-        list.add(new Product("mango",  130.40));
-        list.add(new Product("pear",  50.40));
-        list.add(new Product("lemon",  175.50));
-        list.add(new Product("grapes",  248.80));
-        list.add(new Product("plum",  198.40));
+    @Autowired
+    private void setProductDAO (ProductDAO productDAO) {
+        this.productDAO = productDAO;
     }
 
     public List<Product> getList () {
-        return Collections.unmodifiableList(list); // Добавить неизменяемость листа
+        list = productDAO.findAll();
+        return Collections.unmodifiableList(list);
     }
 
     public Product getProduct (Long id) {

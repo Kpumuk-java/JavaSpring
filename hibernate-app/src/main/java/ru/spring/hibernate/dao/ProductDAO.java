@@ -1,25 +1,28 @@
-package ru.spring.hibernet;
+package ru.spring.hibernate.dao;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import ru.spring.hibernate.model.Product;
 
 import java.util.List;
 import java.util.Optional;
 
+@Component
 public class ProductDAO {
 
-    private static SessionFactory factory;
+    private SessionFactory factory;
 
-    private static void init() {
-        factory = new Configuration()
-                .configure("configs/hibernet/hibernate.cfg.xml")
-                .buildSessionFactory();
+    @Autowired
+    public void setFactory (SessionFactory factory) {
+        this.factory = factory;
     }
 
     public Optional<Product> findById (Long id) {
         try (Session session = factory.getCurrentSession()) {
             session.beginTransaction();
-            Product p = session.createQuery("select p from Product p where p.id = " + id, Product.class).getSingleResult();
+            Product p = session.createQuery("select p from products p where p.id = " + id, Product.class).getSingleResult();
             session.getTransaction().commit();
             return Optional.ofNullable(p);
         }
@@ -28,7 +31,7 @@ public class ProductDAO {
     public List<Product> findAll () {
         try (Session session = factory.getCurrentSession()) {
             session.beginTransaction();
-            List<Product> list = session.createQuery("select p from Product p", Product.class).getResultList();
+            List<Product> list = session.createQuery("select p from products p", Product.class).getResultList();
             session.getTransaction().commit();
             return list;
         }
@@ -52,7 +55,4 @@ public class ProductDAO {
         }
     }
 
-    public static void shutDown () {
-        factory.close();
-    }
 }

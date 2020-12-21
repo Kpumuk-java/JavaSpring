@@ -9,7 +9,7 @@
           <unit-entry name="configs:criteria_api:hibernate.cfg.xml" />
           <unit-entry name="configs:crud:hibernate.cfg.xml" />
           <unit-entry name="configs:hibernate.cfg.xml" />
-          <unit-entry name="configs:hibernet:hibernate.cfg.xml" />
+          <unit-entry name="configs:hibernet:hibernate.cfg.xml" value="be11272c-3e4f-466d-86d4-773175145b68" />
           <unit-entry name="configs:inheritance:table_per_class:hibernate.cfg.xml" />
           <unit-entry name="configs:lifecycle:hibernate.cfg.xml" />
           <unit-entry name="configs:linked_objects:hibernate.cfg.xml" />
@@ -54,6 +54,7 @@
       <configuration>
         <setting name="validation-enabled" value="true" />
         <datasource-mapping>
+          <factory-entry name="Entities" />
           <factory-entry name="com.flamexander.hibernate.entity_manager" />
         </datasource-mapping>
         <naming-strategy-map />
