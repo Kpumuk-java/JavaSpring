@@ -12,11 +12,11 @@ import java.util.stream.Collectors;
 public class PrepareDataApp {
     public static void forcePrepareData() {
         SessionFactory factory = new Configuration()
-                .configure("configs/hibernate.cfg.xml")
+                .configure("configs/hibernet/hibernate.cfg.xml")
                 .buildSessionFactory();
         Session session = null;
         try {
-            String sql = Files.lines(Paths.get("full.sql")).collect(Collectors.joining(" "));
+            String sql = Files.lines(Paths.get("mysql.sql")).collect(Collectors.joining(" "));
             session = factory.getCurrentSession();
             session.beginTransaction();
             session.createNativeQuery(sql).executeUpdate();
