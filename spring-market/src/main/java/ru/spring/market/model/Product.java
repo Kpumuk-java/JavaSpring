@@ -33,5 +33,4 @@ public class Product implements Serializable {
     @Column(name = "updated_at")
     @CreationTimestamp
     private LocalDateTime updated_at;
-
 }

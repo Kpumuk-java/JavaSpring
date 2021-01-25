@@ -1,18 +1,14 @@
 package ru.spring.market.controllers;
 
-
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
 import ru.spring.market.dto.ProductDto;
-import ru.spring.market.model.Product;
+import ru.spring.market.exceptions_handling.ResourceNotFoundException;
+import ru.spring.market.repositories.specifications.ProductSpecifications;
 import ru.spring.market.services.ProductService;
-
-
-import java.util.List;
-import java.util.Optional;
-
 
 @RestController
 @RequestMapping("/api/v1/products")
@@ -22,25 +18,19 @@ public class ProductController {
     private final ProductService productService;
 
     @GetMapping("/{id}")
-    public Optional<Product> getProductByID(@RequestParam Long id) {
-        return productService.findProductById(id);
+    public ProductDto getProductByID(@RequestParam Long id) {
+        return productService.findProductById(id).orElseThrow(() -> new ResourceNotFoundException("Product with id: " + id + " doesn't exist"));
     }
 
     @GetMapping
-    public Page<ProductDto> getAllProducts(@RequestParam(name = "min_price", defaultValue = "0") Integer minPrice,
-                                           @RequestParam(name = "max_price", required = false) Integer maxPrice,
-                                           @RequestParam(name = "title", required = false) String title,
-                                           @RequestParam(name = "p", defaultValue = "1") Integer page ) {
-
-        if (maxPrice == null) {
-            maxPrice = Integer.MAX_VALUE;
-        }
+    public Page<ProductDto> getAllProducts(
+            @RequestParam MultiValueMap<String, String > params,
+            @RequestParam(name = "p", defaultValue = "1") Integer page ) {
 
         if (page < 1) {
             page = 1;
         }
-
-        return productService.findAll(page);
+        return productService.findAll(ProductSpecifications.build(params), page, 5);
     }
 
     @PostMapping

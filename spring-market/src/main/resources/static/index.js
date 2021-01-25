@@ -6,6 +6,7 @@ angular.module('app', []).controller('indexController', function ($scope, $http)
             url: contextPath + '/products',
             method: 'GET',
             params: {
+                title: $scope.filter ? $scope.filter.title : null,
                 min_price: $scope.filter ? $scope.filter.min_price : null,
                 max_price: $scope.filter ? $scope.filter.max_price : null,
                 title: $scope.filter ? $scope.filter.title : null,
@@ -13,7 +14,17 @@ angular.module('app', []).controller('indexController', function ($scope, $http)
             }
         }).then(function (response) {
             $scope.ProductsPage = response.data;
-            $scope.PaginationArray = $scope.generatePagesIndexes(1, $scope.ProductsPage.totalPages);
+
+            let minPageIndex = pageIndex - 2;
+            if (minPageIndex < 1 ) {
+                minPageIndex = 1;
+            }
+
+            let maxPageIndex = pageIndex + 2;
+            if (maxPageIndex > $scope.ProductsPage.totalPages) {
+                maxPageIndex = $scope.ProductsPage.totalPages
+            }
+            $scope.PaginationArray = $scope.generatePagesIndexes(minPageIndex, maxPageIndex);
         });
     };
 
@@ -38,6 +49,32 @@ angular.module('app', []).controller('indexController', function ($scope, $http)
             $scope.fillTable();
         });
     }
+
+    $scope.addProductInCartById = function(productID) {
+        $http({
+            url: contextPath + '/cart/add',
+            method: 'GET',
+            params: {
+                id: productID,
+                count: "1"
+            }
+        }).then(function (response) {
+            $scope.fillTableCart();
+        });
+    }
+
+    $scope.fillTableCart = function () {
+        $http.get(contextPath + '/cart/').then(function (response) {
+            $scope.ProductsPageCart = response.data;
+        });
+    }
+
+    $scope.deleteProductInCartById = function (productId) {
+        $http.get(contextPath + '/cart/delete/' + productId).then(function (response) {
+            $scope.fillTableCart();
+        });
+    }
+
 
     $scope.fillTable();
 });

@@ -5,12 +5,14 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import ru.spring.market.dto.ProductDto;
 import ru.spring.market.model.Product;
 import ru.spring.market.repositories.ProductRepository;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -18,18 +20,13 @@ import java.util.stream.Collectors;
 public class ProductService  {
     private final ProductRepository productRepository;
 
-    public ProductDto findProductById (Long id) {
-        return new ProductDto(productRepository.findById(id).get());
+    public Optional<ProductDto> findProductById (Long id) {
+        return productRepository.findById(id).map(ProductDto::new);
     }
 
-    public List<ProductDto> findAll () {
-        return  productRepository.findAll().stream().map(ProductDto::new).collect(Collectors.toList());
-    }
-
-    public Page<ProductDto> findAll(int page) {
-        Page<Product> originalPage = productRepository.findAll(PageRequest.of(page - 1, 5));
-        return new PageImpl<>(originalPage.getContent().stream().map(ProductDto::new).collect(Collectors.toList()),
-                originalPage.getPageable(), originalPage.getTotalElements());
+    public Page<ProductDto> findAll(Specification<Product> spec, int page, int pageSize) {
+        Page<Product> originalPage = productRepository.findAll(spec, PageRequest.of(page - 1, pageSize));
+        return originalPage.map(ProductDto::new);
     }
 
     public ProductDto saveOrUpdate(ProductDto productDto) {

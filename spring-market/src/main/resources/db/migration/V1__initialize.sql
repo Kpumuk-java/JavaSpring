@@ -16,3 +16,4 @@ insert into products (title, price) values
 ('lemon', 175),
 ('grapes', 248),
 ('plum', 198);
+
