@@ -2,9 +2,11 @@ package ru.spring.market.model;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.Comparator;
 
 @Entity
@@ -23,5 +25,13 @@ public class Product implements Serializable {
 
     @Column(name = "price")
     private int price;
+
+    @Column(name = "created_at")
+    @CreationTimestamp
+    private LocalDateTime created_at;
+
+    @Column(name = "updated_at")
+    @CreationTimestamp
+    private LocalDateTime updated_at;
 
 }
