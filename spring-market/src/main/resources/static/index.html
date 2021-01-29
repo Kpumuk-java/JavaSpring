@@ -53,7 +53,7 @@
             <td>{{p.title}}</td>
             <td>{{p.price}}</td>
             <td>
-                 <button class="btn btn-green" ng-click="addProductInCartById(p.id)">Добавить в корзину</button>
+                 <button class="btn btn-outline-success" ng-click="addProductInCartById(p.id)">Добавить в корзину</button>
             </td>
             <td>
                  <button class="btn btn-danger" ng-click="deleteProductById(p.id)">Удалить товар</button>
@@ -97,17 +97,27 @@
         <tr>
             <td>Название</td>
             <td>Цена</td>
+            <td></td>
             <td>Количество</td>
+            <td></td>
+            <td>Общая сумма</td>
             <td></td>
         </tr>
         </thead>
         <tbody>
-        <tr ng-repeat="cart in ProductsPageCart">
-            <td>{{cart.title}}</td>
-            <td>{{cart.price}}</td>
-            <td>{{cart.count}}</td>
+        <tr ng-repeat="oi in ProductsPageCart.items">
+            <td>{{oi.productTitle}}</td>
+            <td>{{oi.pricePerProduct}}</td>
             <td>
-                <button class="btn btn-danger" ng-click="deleteProductInCartById(cart.id)">Удалить товар</button>
+                <button class="btn btn-danger" ng-click="decrementQuantity(io.id)">-</button>
+            </td>
+            <td>{{oi.quantity}}</td>
+            <td>
+                <button class="btn btn-danger" ng-click="incrementQuantity(io.id)">+</button>
+            </td>
+            <td>{{oi.price}}</td>
+            <td>
+                <button class="btn btn-danger" ng-click="deleteProductInCartById(io.id)">Удалить товар</button>
             </td>
         </tr>
         </tbody>

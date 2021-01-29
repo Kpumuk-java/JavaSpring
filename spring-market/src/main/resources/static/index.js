@@ -52,29 +52,49 @@ angular.module('app', []).controller('indexController', function ($scope, $http)
 
     $scope.addProductInCartById = function(productID) {
         $http({
-            url: contextPath + '/cart/add',
-            method: 'GET',
-            params: {
-                id: productID,
-                count: "1"
-            }
+            url: contextPath + '/cart/add/' + productID,
+            method: 'GET'
         }).then(function (response) {
-            $scope.fillTableCart();
-        });
-    }
-
-    $scope.fillTableCart = function () {
-        $http.get(contextPath + '/cart/').then(function (response) {
-            $scope.ProductsPageCart = response.data;
+            $scope.showCart();
         });
     }
 
     $scope.deleteProductInCartById = function (productId) {
-        $http.get(contextPath + '/cart/delete/' + productId).then(function (response) {
-            $scope.fillTableCart();
+        $http.delete(contextPath + '/cart/delete/' + productId).then(function (response) {
+            $scope.showCart();
         });
     }
 
+    $scope.clearCart = function () {
+        $http.get(contextPath + '/cart/clear')
+            .then(function (response) {
+                $scope.showCart();
+            });
+    }
 
+    $scope.showCart = function () {
+        $http({
+            url: contextPath + '/cart',
+            method: 'GET'
+        }).then(function (response) {
+            $scope.ProductsPageCart = response.data;
+        });
+    };
+
+    $scope.decrementQuantity = function (productID) {
+        $http.get(contextPath + '/dec/' + productID)
+            .then(function (response) {
+                $scope.showCart();
+            });
+    };
+
+    $scope.incrementQuantity = function (productID) {
+        $http.get(contextPath + '/inc/' + productID)
+            .then(function (response) {
+                $scope.showCart();
+            });
+    }
+
+    $scope.showCart();
     $scope.fillTable();
 });

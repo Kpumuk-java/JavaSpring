@@ -19,7 +19,7 @@ public class ProductController {
 
     @GetMapping("/{id}")
     public ProductDto getProductByID(@RequestParam Long id) {
-        return productService.findProductById(id).orElseThrow(() -> new ResourceNotFoundException("Product with id: " + id + " doesn't exist"));
+        return productService.findProductDtoById(id).orElseThrow(() -> new ResourceNotFoundException("Product with id: " + id + " doesn't exist"));
     }
 
     @GetMapping

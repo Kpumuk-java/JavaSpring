@@ -3,7 +3,6 @@ package ru.spring.market.services;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
@@ -11,17 +10,19 @@ import ru.spring.market.dto.ProductDto;
 import ru.spring.market.model.Product;
 import ru.spring.market.repositories.ProductRepository;
 
-import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
 public class ProductService  {
     private final ProductRepository productRepository;
 
-    public Optional<ProductDto> findProductById (Long id) {
+    public Optional<ProductDto> findProductDtoById (Long id) {
         return productRepository.findById(id).map(ProductDto::new);
+    }
+
+    public Optional<Product> findProductById (Long id) {
+        return productRepository.findById(id);
     }
 
     public Page<ProductDto> findAll(Specification<Product> spec, int page, int pageSize) {

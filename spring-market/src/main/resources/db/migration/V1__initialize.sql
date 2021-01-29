@@ -17,3 +17,11 @@ insert into products (title, price) values
 ('grapes', 248),
 ('plum', 198);
 
+create table order_items (
+    id                      bigserial primary key,
+    title                   varchar(255),
+    quantity                int,
+    price_per_item          int,
+    price                   int
+);
+

@@ -2,23 +2,19 @@ package ru.spring.market.dto;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import ru.spring.market.model.Product;
+import ru.spring.market.beans.Cart;
 
-import java.util.Map;
+import java.util.List;
+import java.util.stream.Collectors;
 
-@Data
 @NoArgsConstructor
+@Data
 public class CartDto {
-    private long id;
-    private String title;
-    private int price;
-    private int count;
+    private List<OrderItemDto> items;
+    private int totalPrice;
 
-    public CartDto(Map.Entry<Product, Integer> map) {
-        this.id = map.getKey().getId();
-        this.title = map.getKey().getTitle();
-        this.price = map.getKey().getPrice();
-        this.count = map.getValue();
+    public CartDto(Cart cart) {
+        this.totalPrice = cart.getTotalPrice();
+        this.items = cart.getItems().stream().map(OrderItemDto::new).collect(Collectors.toList());
     }
-
 }
