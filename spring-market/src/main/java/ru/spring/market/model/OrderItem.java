@@ -35,6 +35,7 @@ public class OrderItem {
         this.price = this.pricePerProduct;
     }
 
+
     public void incrementQuantity() {
         quantity++;
         price = quantity * pricePerProduct;
