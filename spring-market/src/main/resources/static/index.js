@@ -1,6 +1,8 @@
 angular.module('app', []).controller('indexController', function ($scope, $http) {
     const contextPath = 'http://localhost:8189/market';
     $scope.authorized = false;
+    $scope.cartNotNull = false;
+    $scope.username = null;
 
     $scope.fillTable = function (pageIndex = 1) {
         $http({
@@ -10,14 +12,13 @@ angular.module('app', []).controller('indexController', function ($scope, $http)
                 title: $scope.filter ? $scope.filter.title : null,
                 min_price: $scope.filter ? $scope.filter.min_price : null,
                 max_price: $scope.filter ? $scope.filter.max_price : null,
-                title: $scope.filter ? $scope.filter.title : null,
                 p: pageIndex
             }
         }).then(function (response) {
             $scope.ProductsPage = response.data;
 
             let minPageIndex = pageIndex - 2;
-            if (minPageIndex < 1 ) {
+            if (minPageIndex < 1) {
                 minPageIndex = 1;
             }
 
@@ -37,7 +38,7 @@ angular.module('app', []).controller('indexController', function ($scope, $http)
             });
     };
 
-    $scope.generatePagesIndexes = function(startPage, endPage) {
+    $scope.generatePagesIndexes = function (startPage, endPage) {
         let arr = [];
         for (let i = startPage; i < endPage + 1; i++) {
             arr.push(i);
@@ -51,7 +52,7 @@ angular.module('app', []).controller('indexController', function ($scope, $http)
         });
     }
 
-    $scope.addProductInCartById = function(productID) {
+    $scope.addProductInCartById = function (productID) {
         $http({
             url: contextPath + '/api/v1/cart/add/' + productID,
             method: 'GET'
@@ -78,22 +79,29 @@ angular.module('app', []).controller('indexController', function ($scope, $http)
             url: contextPath + '/api/v1/cart',
             method: 'GET'
         }).then(function (response) {
-            $scope.ProductsPageCart = response.data;
+            if (response.data.items.length > 0) {
+                $scope.cartNotNull = true;
+                $scope.ProductsPageCart = response.data;
+            } else {
+                $scope.cartNotNull = false;
+            }
+
         });
     };
 
-    $scope.decrementQuantity = function (productID) {
-        /*$scope.ProductsPageCart.forEach(function(item, i, arr) {
-            if (arr.items.id == productID) {
+    $scope.exit = function () {
 
-            }
+    }
 
-            alert( i + ": " + item + " (массив:" + arr + ")" );
-        });*/
-        $http.get(contextPath + '/api/v1/cart/dec/' + productID)
-            .then(function (response) {
-                $scope.showCart();
-            });
+    $scope.decrementQuantity = function (ProductsPageCartItems) {
+        if (ProductsPageCartItems.quantity == 1) {
+            $scope.deleteProductInCartById(ProductsPageCartItems.id);
+        } else {
+            $http.get(contextPath + '/api/v1/cart/dec/' + ProductsPageCartItems.id)
+                .then(function (response) {
+                    $scope.showCart();
+                });
+        }
     };
 
     $scope.incrementQuantity = function (productID) {
@@ -108,13 +116,17 @@ angular.module('app', []).controller('indexController', function ($scope, $http)
             .then(function successCallback(response) {
                 if (response.data.token) {
                     $http.defaults.headers.common.Authorization = 'Bearer ' + response.data.token;
+                    $scope.username = $scope.user.username;
                     $scope.user.username = null;
                     $scope.user.password = null;
                     $scope.authorized = true;
                     $scope.fillTable();
+                    $scope.showCart();
                 }
             }, function errorCallback(response) {
                 window.alert("Error");
             });
     };
+
+    $scope.fillTable();
 });

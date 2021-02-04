@@ -57,6 +57,7 @@ public class Cart {
         while (iter.hasNext()) {
             if (iter.next().getProduct().getId().equals(id)) {
                 iter.remove();
+                recalculate();
                 return;
             }
         }
