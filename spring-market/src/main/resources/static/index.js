@@ -1,10 +1,10 @@
-angular.module('app', []).controller('indexController', function ($scope, $http) {
+angular.module('app', ['ngStorage']).controller('indexController', function ($scope, $http, $localStorage) {
     const contextPath = 'http://localhost:8189/market';
     $scope.authorized = false;
     $scope.cartNotNull = false;
     $scope.username = null;
 
-    $scope.fillTable = function (pageIndex = 1) {
+    $scope.showProductPage = function (pageIndex = 1) {
         $http({
             url: contextPath + '/api/v1/products',
             method: 'GET',
@@ -34,7 +34,7 @@ angular.module('app', []).controller('indexController', function ($scope, $http)
         $http.post(contextPath + '/api/v1/products', $scope.newProduct)
             .then(function (response) {
                 $scope.newProduct = null;
-                $scope.fillTable();
+                $scope.showProductPage();
             });
     };
 
@@ -48,7 +48,7 @@ angular.module('app', []).controller('indexController', function ($scope, $http)
 
     $scope.deleteProductById = function (productID) {
         $http.delete(contextPath + '/api/v1/products/' + productID).then(function (response) {
-            $scope.fillTable();
+            $scope.showProductPage();
         });
     }
 
@@ -116,17 +116,43 @@ angular.module('app', []).controller('indexController', function ($scope, $http)
             .then(function successCallback(response) {
                 if (response.data.token) {
                     $http.defaults.headers.common.Authorization = 'Bearer ' + response.data.token;
+
+                    $localStorage.marketCurrentUser = $scope.user.username;
+                    $localStorage.marketTokenWithBearerPrefix = 'Bearer ' + response.data.token;
+
                     $scope.username = $scope.user.username;
                     $scope.user.username = null;
                     $scope.user.password = null;
                     $scope.authorized = true;
-                    $scope.fillTable();
+                    $scope.showProductPage();
                     $scope.showCart();
                 }
             }, function errorCallback(response) {
                 window.alert("Error");
             });
     };
+    
+    $scope.createOrder = function () {
+        $http.get(contextPath + '/api/v1/orders/create')
+            .then(function (response) {
+                $scope.showMyOrders();
+                $scope.showCart();
+            });
+    };
 
-    $scope.fillTable();
+    $scope.showMyOrders = function () {
+        $http({
+            url: contextPath + '/api/v1/orders',
+            method: 'GET'
+        }).then(function (response) {
+            $scope.MyOrders = response.data;
+        });
+    };
+
+    $scope.showProductPage();
+
+    if ($localStorage.marketCurrentUser) {
+        $http.default.headers.common.Authorization = $localStorage.marketTokenWithBearerPrefix;
+        $scope.authorized = true;
+    }
 });
