@@ -20,8 +20,8 @@ public class OrderService {
     private final OrderRepository orderRepository;
     private final Cart cart;
 
-    public Order createFromUserCart (User user) {
-        Order order = new Order(cart, user);
+    public Order createFromUserCart (User user, String address) {
+        Order order = new Order(cart, user, address);
         orderRepository.save(order);
         cart.clear();
         return order;

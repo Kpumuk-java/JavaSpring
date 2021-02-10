@@ -44,13 +44,13 @@ angular.module('app', ['ngStorage']).controller('indexController', function ($sc
             arr.push(i);
         }
         return arr;
-    }
+    };
 
     $scope.deleteProductById = function (productID) {
         $http.delete(contextPath + '/api/v1/products/' + productID).then(function (response) {
             $scope.showProductPage();
         });
-    }
+    };
 
     $scope.addProductInCartById = function (productID) {
         $http({
@@ -59,20 +59,20 @@ angular.module('app', ['ngStorage']).controller('indexController', function ($sc
         }).then(function (response) {
             $scope.showCart();
         });
-    }
+    };
 
     $scope.deleteProductInCartById = function (productID) {
         $http.delete(contextPath + '/api/v1/cart/' + productID).then(function (response) {
             $scope.showCart();
         });
-    }
+    };
 
     $scope.clearCart = function () {
         $http.get(contextPath + '/api/v1/cart/clear')
             .then(function (response) {
                 $scope.showCart();
             });
-    }
+    };
 
     $scope.showCart = function () {
         $http({
@@ -88,10 +88,6 @@ angular.module('app', ['ngStorage']).controller('indexController', function ($sc
 
         });
     };
-
-    $scope.exit = function () {
-
-    }
 
     $scope.decrementQuantity = function (ProductsPageCartItems) {
         if (ProductsPageCartItems.quantity == 1) {
@@ -109,7 +105,7 @@ angular.module('app', ['ngStorage']).controller('indexController', function ($sc
             .then(function (response) {
                 $scope.showCart();
             });
-    }
+    };
 
     $scope.tryToAuth = function () {
         $http.post(contextPath + '/auth', $scope.user)
@@ -126,18 +122,25 @@ angular.module('app', ['ngStorage']).controller('indexController', function ($sc
                     $scope.authorized = true;
                     $scope.showProductPage();
                     $scope.showCart();
+                    $scope.showMyOrders();
                 }
             }, function errorCallback(response) {
                 window.alert("Error");
             });
     };
-    
+
+
+
     $scope.createOrder = function () {
-        $http.get(contextPath + '/api/v1/orders/create')
-            .then(function (response) {
-                $scope.showMyOrders();
-                $scope.showCart();
-            });
+        if ($scope.address != null) {
+            $http.get(contextPath + '/api/v1/orders/create/' + $scope.address)
+                .then(function (response) {
+                    $scope.showMyOrders();
+                    $scope.showCart();
+                });
+        } else {
+            window.alert("Введите адрес доставки");
+        }
     };
 
     $scope.showMyOrders = function () {
@@ -149,10 +152,23 @@ angular.module('app', ['ngStorage']).controller('indexController', function ($sc
         });
     };
 
+    $scope.logout = function () {
+        $http.defaults.headers.common.Authorization = null;
+        delete $localStorage.marketCurrentUser;
+        delete $localStorage.marketTokenWithBearerPrefix;
+        $scope.username = null;
+        $scope.authorized = false;
+        $scope.showCart();
+        $scope.showMyOrders();
+    }
+
     $scope.showProductPage();
 
     if ($localStorage.marketCurrentUser) {
-        $http.default.headers.common.Authorization = $localStorage.marketTokenWithBearerPrefix;
+        $http.defaults.headers.common.Authorization = $localStorage.marketTokenWithBearerPrefix;
         $scope.authorized = true;
+        $scope.username = $localStorage.marketCurrentUser;
+        $scope.showCart();
+        $scope.showMyOrders();
     }
 });

@@ -24,15 +24,16 @@ public class OrderController {
     private final OrderService orderService;
     private final UserService userService;
 
-    @GetMapping("/create")
+    @GetMapping("/create/{address}")
     @ResponseStatus(HttpStatus.CREATED)
-    public void createOrderFromCart(Principal principal) {
+    public void createOrderFromCart(Principal principal, @PathVariable String address) {
         User user = userService.findByUsername(principal.getName()).orElseThrow(() -> new ResourceNotFoundException("User not found"));
-        orderService.createFromUserCart(user);
+        orderService.createFromUserCart(user, address);
     }
 
     @GetMapping
     public List<OrderDto> getCurrentUserOrders (Principal principal) {
+
         return orderService.findAllOrdersByOwnerName(principal.getName()).stream().map(OrderDto::new).collect(Collectors.toList());
     }
 

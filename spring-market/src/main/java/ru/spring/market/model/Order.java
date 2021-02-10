@@ -33,6 +33,9 @@ public class Order {
     @Column(name = "price")
     private int price;
 
+    @Column(name = "address")
+    private String address;
+
     @CreationTimestamp
     @Column(name = "created_at")
     private LocalDateTime createdAt;
@@ -41,10 +44,11 @@ public class Order {
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
 
-    public Order(Cart cart, User user) {
+    public Order(Cart cart, User user, String address) {
         this.price = cart.getTotalPrice();
         this.items = new ArrayList<>();
         this.owner = user;
+        this.address = address;
         cart.getItems().stream().forEach(oi -> {
             oi.setOrder(this);
             items.add(oi);
