@@ -31,4 +31,8 @@ public class OrderService {
         return orderRepository.findAllByOwnerUsername(username);
     }
 
+    public Optional<Order> getOrderById (Long id) {
+        return orderRepository.findById(id);
+    }
+
 }
