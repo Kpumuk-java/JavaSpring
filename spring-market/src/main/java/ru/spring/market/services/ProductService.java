@@ -10,7 +10,10 @@ import ru.spring.market.dto.ProductDto;
 import ru.spring.market.model.Product;
 import ru.spring.market.repositories.ProductRepository;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -21,6 +24,14 @@ public class ProductService  {
         return productRepository.findById(id).map(ProductDto::new);
     }
 
+    public static final Function<Product, ru.spring.market.ws.products.Product> functionEntityToSoap = se -> {
+        ru.spring.market.ws.products.Product p = new ru.spring.market.ws.products.Product();
+        p.setId(se.getId());
+        p.setTitle(se.getTitle());
+        p.setPrice(se.getPrice());
+        return p;
+    };
+
     public Optional<Product> findProductById (Long id) {
         return productRepository.findById(id);
     }
@@ -28,6 +39,11 @@ public class ProductService  {
     public Page<ProductDto> findAll(Specification<Product> spec, int page, int pageSize) {
         Page<Product> originalPage = productRepository.findAll(spec, PageRequest.of(page - 1, pageSize));
         return originalPage.map(ProductDto::new);
+    }
+
+
+    public List<ru.spring.market.ws.products.Product> getAllProducts () {
+        return productRepository.findAll().stream().map(functionEntityToSoap).collect(Collectors.toList());
     }
 
     public ProductDto saveOrUpdate(ProductDto productDto) {
