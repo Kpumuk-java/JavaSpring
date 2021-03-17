@@ -25,11 +25,4 @@ public class Product implements Serializable {
     @Column(name = "price")
     private int price;
 
-    @Column(name = "created_at")
-    @CreationTimestamp
-    private LocalDateTime created_at;
-
-    @Column(name = "updated_at")
-    @CreationTimestamp
-    private LocalDateTime updated_at;
 }
