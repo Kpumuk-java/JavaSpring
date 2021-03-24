@@ -2,10 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ea230cc2-fcc0-487a-b990-f7d14f889753" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/console-blog/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/console-blog/src/main/java/ru/kpumuk/console/blog/BlogApp.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/console-blog/src/main/java/ru/kpumuk/console/blog/producer/ProducerIT.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/console-subscriber/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -71,7 +69,8 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1616247995331</updated>
-      <workItem from="1616247999443" duration="3691000" />
+      <workItem from="1616247999443" duration="4080000" />
+      <workItem from="1616503795752" duration="1371000" />
     </task>
     <servers />
   </component>
@@ -83,7 +82,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
