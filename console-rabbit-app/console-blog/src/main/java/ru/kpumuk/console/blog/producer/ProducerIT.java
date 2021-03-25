@@ -19,39 +19,23 @@ import java.util.logging.LogManager;
 
 @Getter
 public class ProducerIT {
-    private Map<String, String> EXCHANGE_LIST;
+    private String EXCHANGE_NAME = "IT-Publisher";
     private ConnectionFactory factory;
+    private Channel channel;
     private static Logger log = org.slf4j.LoggerFactory.getLogger(ProducerIT.class);
-    private int COUNT;
 
     public void publishMessage(String[] message) throws IOException, TimeoutException {
-        log.info("Start publish message: " + message[0] + " " + message[1]);
-        try (Connection connection = factory.newConnection();
-             Channel channel = connection.createChannel()) {
-            log.info("Size list exchange: " + EXCHANGE_LIST.size());
-            if (EXCHANGE_LIST != null) {
-                String exchangeName;
-                if (EXCHANGE_LIST.keySet().stream().equals(message[0])) {
-                    exchangeName = EXCHANGE_LIST.get(message[0]);
-                } else {
-                    exchangeName = message[1].substring(0,1) + "_" + COUNT++;
-                    EXCHANGE_LIST.put(message[0], exchangeName);
-                }
-                channel.exchangeDeclare(exchangeName, BuiltinExchangeType.DIRECT);
-                channel.basicPublish(exchangeName, message[0], null, message[1].getBytes("UTF-8"));
-                log.info("Publish message: " + "\"" + message[1] + "\"" + " in channel name " + exchangeName);
-
-            } else {
-                log.error("Can't publish message " + message[0] + " " + message[1]);
-            }
-        }
+        channel.basicPublish(EXCHANGE_NAME, message[0], null, message[1].getBytes("UTF-8"));
+        log.info("[Published] routing key: \"" +  message[0] + "\" message: \"" + message[1] + "\"");
     }
 
-    public ProducerIT() {
+    public ProducerIT() throws IOException, TimeoutException {
         log.info("Init producer IT-blog rabbit");
-        EXCHANGE_LIST = new HashMap<>();
         factory = new ConnectionFactory();
         factory.setHost("localhost");
+        Connection connection = factory.newConnection();
+        channel = connection.createChannel();
+        channel.exchangeDeclare(EXCHANGE_NAME, BuiltinExchangeType.DIRECT);
     }
 
 }

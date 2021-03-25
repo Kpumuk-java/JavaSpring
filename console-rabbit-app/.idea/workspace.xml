@@ -2,12 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8bdaedd3-9132-4923-9d39-0122955d64ea" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/console-blog/src/main/java/ru/kpumuk/console/blog/BlogApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/console-blog/src/main/java/ru/kpumuk/console/blog/BlogApp.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/console-blog/src/main/java/ru/kpumuk/console/blog/producer/ProducerIT.java" beforeDir="false" afterPath="$PROJECT_DIR$/console-blog/src/main/java/ru/kpumuk/console/blog/producer/ProducerIT.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/console-blog/target/classes/ru/kpumuk/console/blog/BlogApp.class" beforeDir="false" afterPath="$PROJECT_DIR$/console-blog/target/classes/ru/kpumuk/console/blog/BlogApp.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/console-blog/target/classes/ru/kpumuk/console/blog/producer/ProducerIT.class" beforeDir="false" afterPath="$PROJECT_DIR$/console-blog/target/classes/ru/kpumuk/console/blog/producer/ProducerIT.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/console-subscriber/src/main/java/ru/kpumuk/console/subscriber/SubscriberApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/console-subscriber/src/main/java/ru/kpumuk/console/subscriber/SubscriberApp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/console-subscriber/src/main/java/ru/kpumuk/console/subscriber/consumer/ConsumerIT.java" beforeDir="false" afterPath="$PROJECT_DIR$/console-subscriber/src/main/java/ru/kpumuk/console/subscriber/consumer/ConsumerIT.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,12 +52,19 @@
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/console-subscriber/src/main/java" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.javacompiler" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Java\JavaSpring\console-rabbit-app\console-subscriber\src\main\java" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
