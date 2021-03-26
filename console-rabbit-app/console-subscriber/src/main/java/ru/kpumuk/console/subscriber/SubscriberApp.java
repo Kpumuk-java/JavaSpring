@@ -13,7 +13,7 @@ public class SubscriberApp {
 
     public static void main(String[] args) throws IOException, TimeoutException {
         ConsumerIT consumerIT = new ConsumerIT();
-        try (Scanner sc = new Scanner(System.in)){
+        try (Scanner sc = new Scanner(System.in)) {
             String buffer;
             String[] bufferMassive;
             while (true) {
@@ -25,13 +25,14 @@ public class SubscriberApp {
                 if (bufferMassive.length == 2) {
                     if (bufferMassive[0].equals("add")) {
                         consumerIT.addBind(bufferMassive[1]);
+                        continue;
                     }
                     if (bufferMassive[0].equals("unbind")) {
                         consumerIT.unBind(bufferMassive[1]);
+                        continue;
                     }
-                } else {
-                    log.error("incorrect message");
                 }
+                log.error("Incorrect message: \"" + buffer + "\"");
             }
         }
     }

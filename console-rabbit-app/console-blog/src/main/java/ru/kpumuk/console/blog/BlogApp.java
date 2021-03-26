@@ -5,7 +5,6 @@ import org.slf4j.LoggerFactory;
 import ru.kpumuk.console.blog.producer.ProducerIT;
 
 import java.io.IOException;
-import java.util.List;
 import java.util.Scanner;
 import java.util.concurrent.TimeoutException;
 
@@ -26,7 +25,7 @@ public class BlogApp {
                 if (bufferMassive.length == 2) {
                     producerIT.publishMessage(bufferMassive);
                 } else {
-                    log.error("incorrect message");
+                    log.error("Incorrect message: \"" + buffer + "\"");
                 }
             }
         }
