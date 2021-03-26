@@ -24,7 +24,10 @@ public class SubscriberApp {
                 bufferMassive = buffer.split(" ", 2);
                 if (bufferMassive.length == 2) {
                     if (bufferMassive[0].equals("add")) {
-
+                        consumerIT.addBind(bufferMassive[1]);
+                    }
+                    if (bufferMassive[0].equals("unbind")) {
+                        consumerIT.unBind(bufferMassive[1]);
                     }
                 } else {
                     log.error("incorrect message");

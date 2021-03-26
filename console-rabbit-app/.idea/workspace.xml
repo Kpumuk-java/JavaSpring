@@ -2,15 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8bdaedd3-9132-4923-9d39-0122955d64ea" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/console-blog/src/main/java/ru/kpumuk/console/blog/BlogApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/console-blog/src/main/java/ru/kpumuk/console/blog/BlogApp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/console-blog/src/main/java/ru/kpumuk/console/blog/producer/ProducerIT.java" beforeDir="false" afterPath="$PROJECT_DIR$/console-blog/src/main/java/ru/kpumuk/console/blog/producer/ProducerIT.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/console-blog/target/classes/ru/kpumuk/console/blog/BlogApp.class" beforeDir="false" afterPath="$PROJECT_DIR$/console-blog/target/classes/ru/kpumuk/console/blog/BlogApp.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/console-blog/target/classes/ru/kpumuk/console/blog/producer/ProducerIT.class" beforeDir="false" afterPath="$PROJECT_DIR$/console-blog/target/classes/ru/kpumuk/console/blog/producer/ProducerIT.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/console-subscriber/src/main/java/ru/kpumuk/console/subscriber/SubscriberApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/console-subscriber/src/main/java/ru/kpumuk/console/subscriber/SubscriberApp.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/console-subscriber/src/main/java/ru/kpumuk/console/subscriber/consumer/ConsumerIT.java" beforeDir="false" afterPath="$PROJECT_DIR$/console-subscriber/src/main/java/ru/kpumuk/console/subscriber/consumer/ConsumerIT.java" afterDir="false" />
     </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -78,7 +74,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.SubscriberApp">
     <configuration name="BlogApp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="ru.kpumuk.console.blog.BlogApp" />
       <module name="console-blog" />
@@ -92,8 +88,22 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="SubscriberApp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="ru.kpumuk.console.subscriber.SubscriberApp" />
+      <module name="console-subscriber" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ru.kpumuk.console.subscriber.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.SubscriberApp" />
         <item itemvalue="Application.BlogApp" />
       </list>
     </recent_temporary>
@@ -103,13 +113,14 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="ea230cc2-fcc0-487a-b990-f7d14f889753" name="Default Changelist" comment="" />
+      <changelist id="8bdaedd3-9132-4923-9d39-0122955d64ea" name="Default Changelist" comment="" />
       <created>1616247995331</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1616247995331</updated>
       <workItem from="1616247999443" duration="3691000" />
       <workItem from="1616312830478" duration="4286000" />
+      <workItem from="1616747380604" duration="2851000" />
     </task>
     <servers />
   </component>
