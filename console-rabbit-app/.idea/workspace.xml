@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8bdaedd3-9132-4923-9d39-0122955d64ea" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/console-blog/src/main/java/ru/kpumuk/console/blog/BlogApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/console-blog/src/main/java/ru/kpumuk/console/blog/BlogApp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/console-blog/src/main/java/ru/kpumuk/console/blog/producer/ProducerIT.java" beforeDir="false" afterPath="$PROJECT_DIR$/console-blog/src/main/java/ru/kpumuk/console/blog/producer/ProducerIT.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/console-subscriber/src/main/java/ru/kpumuk/console/subscriber/SubscriberApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/console-subscriber/src/main/java/ru/kpumuk/console/subscriber/SubscriberApp.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -120,7 +119,8 @@
       <updated>1616247995331</updated>
       <workItem from="1616247999443" duration="3691000" />
       <workItem from="1616312830478" duration="4286000" />
-      <workItem from="1616747380604" duration="3203000" />
+      <workItem from="1616747380604" duration="5811000" />
+      <workItem from="1617113302998" duration="130000" />
     </task>
     <servers />
   </component>

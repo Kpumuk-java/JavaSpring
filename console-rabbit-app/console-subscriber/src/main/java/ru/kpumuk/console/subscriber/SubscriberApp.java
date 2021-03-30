@@ -33,6 +33,7 @@ public class SubscriberApp {
                     }
                 }
                 log.error("Incorrect message: \"" + buffer + "\"");
+
             }
         }
     }
