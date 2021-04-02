@@ -2,8 +2,21 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8bdaedd3-9132-4923-9d39-0122955d64ea" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../spring-market/src/main/java/ru/spring/market/dto/CartItemDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../spring-market/src/main/java/ru/spring/market/model/Cart.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../spring-market/src/main/java/ru/spring/market/model/CartItem.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../spring-market/src/main/java/ru/spring/market/repositories/CartRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../spring-market/src/main/java/ru/spring/market/services/CartService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/console-subscriber/src/main/java/ru/kpumuk/console/subscriber/SubscriberApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/console-subscriber/src/main/java/ru/kpumuk/console/subscriber/SubscriberApp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../spring-market/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../spring-market/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../spring-market/src/main/java/ru/spring/market/beans/Cart.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../spring-market/src/main/java/ru/spring/market/controllers/CartController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../spring-market/src/main/java/ru/spring/market/controllers/CartController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../spring-market/src/main/java/ru/spring/market/controllers/OrderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../spring-market/src/main/java/ru/spring/market/controllers/OrderController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../spring-market/src/main/java/ru/spring/market/dto/CartDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/../spring-market/src/main/java/ru/spring/market/dto/CartDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../spring-market/src/main/java/ru/spring/market/dto/OrderDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/../spring-market/src/main/java/ru/spring/market/dto/OrderDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../spring-market/src/main/java/ru/spring/market/model/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/../spring-market/src/main/java/ru/spring/market/model/Order.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../spring-market/src/main/java/ru/spring/market/services/OrderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../spring-market/src/main/java/ru/spring/market/services/OrderService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../spring-market/src/main/resources/db/migration/V1__initialize.sql" beforeDir="false" afterPath="$PROJECT_DIR$/../spring-market/src/main/resources/db/migration/V1__initialize.sql" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -121,6 +134,7 @@
       <workItem from="1616312830478" duration="4286000" />
       <workItem from="1616747380604" duration="5811000" />
       <workItem from="1617113302998" duration="130000" />
+      <workItem from="1617367924547" duration="367000" />
     </task>
     <servers />
   </component>

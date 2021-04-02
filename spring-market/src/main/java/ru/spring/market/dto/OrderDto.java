@@ -2,11 +2,7 @@ package ru.spring.market.dto;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import ru.spring.market.beans.Cart;
 import ru.spring.market.model.Order;
-
-import java.util.List;
-import java.util.stream.Collectors;
 
 @NoArgsConstructor
 @Data

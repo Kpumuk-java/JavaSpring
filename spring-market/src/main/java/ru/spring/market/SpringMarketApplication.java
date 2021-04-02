@@ -2,12 +2,14 @@ package ru.spring.market;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
-public class SptringMarketApplication {
+@ComponentScan({"ru"})
+public class SpringMarketApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(SptringMarketApplication.class, args);
+		SpringApplication.run(SpringMarketApplication.class, args);
 	}
 
 }
