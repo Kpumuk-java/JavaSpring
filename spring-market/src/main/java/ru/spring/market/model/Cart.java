@@ -12,7 +12,7 @@ import java.util.UUID;
 @Entity
 @Table(name = "carts")
 @Data
-@Component
+@Component  // без этой анотации, крашится CartService, говорит что такого бина нету
 @NoArgsConstructor
 public class Cart {
     @Id
