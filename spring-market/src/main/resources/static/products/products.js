@@ -1,4 +1,4 @@
-angular.module('app').controller('productsController', function ($scope, $http) {
+angular.module('app').controller('productsController', function ($scope, $http, $localStorage) {
     const contextPath = 'http://localhost:8189/market';
 
     $scope.showProductsPage = function (pageIndex = 1) {
@@ -34,19 +34,26 @@ angular.module('app').controller('productsController', function ($scope, $http) 
             arr.push(i);
         }
         return arr;
-    }
+    };
 
     $scope.addToCart = function (productId) {
-        $http.get(contextPath + '/api/v1/cart/add/' + productId)
-            .then(function (response) {
+        $http({
+            url: contextPath + '/api/v1/cart/add',
+            method: 'POST',
+            params: {
+                product_id: productId,
+                uuid: $localStorage.marketCartUuid
+            }
+        }).then(function (response) {
+            console.log("OK");
             });
-    }
+    };
 
     $scope.createOrder = function () {
         $http.get(contextPath + '/api/v1/orders/create')
             .then(function (response) {
             });
-    }
+    };
 
     $scope.showProductsPage();
 });

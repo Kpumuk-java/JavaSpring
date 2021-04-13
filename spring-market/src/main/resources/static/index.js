@@ -59,7 +59,17 @@
         // });
     }
 
+    const contextPath = 'http://localhost:8189/market';
+
     function run($rootScope, $http, $localStorage) {
+
+        if (!$localStorage.marketCartUuid) {
+            $http.post(contextPath + '/api/v1/cart')
+                .then(function (response) {
+                $localStorage.marketCartUuid = response.data;
+            });
+        }
+
         if ($localStorage.currentUser) {
             $http.defaults.headers.common.Authorization = 'Bearer ' + $localStorage.currentUser.token;
         }

@@ -8,6 +8,7 @@ import ru.spring.market.model.Cart;
 import ru.spring.market.services.CartService;
 import ru.spring.market.services.ProductService;
 
+import javax.websocket.server.PathParam;
 import java.util.UUID;
 
 @RestController
@@ -15,7 +16,6 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class CartController {
     private final CartService cartService;
-    private final ProductService productService;
 
     @PostMapping
     public UUID createNewCart() {
@@ -29,8 +29,13 @@ public class CartController {
         return new CartDto(cart);
     }
 
-    @GetMapping("/{uuid}/add/{product_id}")
-    public void addProductToCart(@PathVariable UUID uuid, @PathVariable(name = "product_id") Long productId) {
+    @PostMapping("/add")
+    public void addProductToCart(@RequestParam UUID uuid, @RequestParam(name = "product_id") Long productId) {
         cartService.addToCart(uuid, productId);
+    }
+
+    @PostMapping("/clear")
+    public void clearCart (@RequestParam UUID uuid) {
+        cartService.clearCart(uuid);
     }
 }

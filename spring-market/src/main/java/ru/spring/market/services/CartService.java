@@ -32,4 +32,12 @@ public class CartService {
         Cart cart = findById(cartId).orElseThrow(() -> new ResourceNotFoundException("Unable to find cart with id: " + cartId));;
         cart.add(new CartItem(p));
     }
+
+    @Transactional
+    public void clearCart (UUID cartId) {
+        Cart cart = findById(cartId).orElseThrow(() -> new ResourceNotFoundException("Cart not found"));
+        cart.clear();
+    }
+
+
 }

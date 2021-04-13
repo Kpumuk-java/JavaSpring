@@ -39,4 +39,9 @@ public class Cart {
             price += ci.getPrice();
         }
     }
+
+    public void clear() {
+        items.clear();
+        recalculate();
+    }
 }
