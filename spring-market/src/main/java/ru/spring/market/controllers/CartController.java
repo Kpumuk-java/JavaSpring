@@ -38,4 +38,9 @@ public class CartController {
     public void clearCart (@RequestParam UUID uuid) {
         cartService.clearCart(uuid);
     }
+
+    @DeleteMapping
+    public void deleteProductInCartById (@RequestParam UUID uuid, @RequestParam(name = "product_id") Long productId) {
+        cartService.delete(uuid, productId);
+    }
 }

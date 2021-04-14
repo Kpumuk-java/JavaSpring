@@ -2,10 +2,8 @@ angular.module('app').controller('cartController', function ($scope, $http, $loc
     const contextPath = 'http://localhost:8189/market';
 
     $scope.showCart = function () {
-        $http({
-            url: contextPath + '/api/v1/cart',
-            method: 'GET'
-        }).then(function (response) {
+        $http.get(contextPath + '/api/v1/cart/' + $localStorage.marketCartUuid)
+            .then(function (response) {
             $scope.Cart = response.data;
         });
     };
@@ -22,6 +20,7 @@ angular.module('app').controller('cartController', function ($scope, $http, $loc
     $scope.clearCart = function () {
         $http.post(contextPath + '/api/v1/cart/clear', $localStorage.marketCartUuid)
             .then(function (response) {
+                console.log("Clear OK")
                 $scope.showCart();
             });
     }
@@ -43,7 +42,14 @@ angular.module('app').controller('cartController', function ($scope, $http, $loc
     }
 
     $scope.deleteProductInCartById = function (productID) {
-        $http.delete(contextPath + '/api/v1/cart/' + productID).then(function (response) {
+        $http({
+            url: contextPath + '/api/v1/cart/',
+            method: 'DELETE',
+            params: {
+                uuid: $localStorage.marketCartUuid,
+                product_id: productID
+            }
+        }).then(function (response) {
             $scope.showCart();
         });
     }

@@ -6,6 +6,8 @@ import org.hibernate.annotations.GenericGenerator;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
+import javax.swing.text.html.HTMLEditorKit;
+import java.util.Iterator;
 import java.util.List;
 import java.util.UUID;
 
@@ -43,5 +45,16 @@ public class Cart {
     public void clear() {
         items.clear();
         recalculate();
+    }
+
+    public void delete(Long productId) {
+        Iterator<CartItem> iterator = items.iterator();
+        while (iterator.hasNext()) {
+            if (iterator.next().getProduct().getId().equals(productId)) {
+                iterator.remove();
+                recalculate();
+                return;
+            }
+        }
     }
 }

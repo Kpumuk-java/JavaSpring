@@ -39,5 +39,9 @@ public class CartService {
         cart.clear();
     }
 
-
+    @Transactional
+    public void delete(UUID cartId, Long productId) {
+        Cart cart = findById(cartId).orElseThrow(() -> new ResourceNotFoundException("Cart not found"));
+        cart.delete(productId);
+    }
 }
