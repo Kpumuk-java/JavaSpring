@@ -33,4 +33,9 @@ public class Product implements Serializable {
     @Column(name = "updated_at")
     @CreationTimestamp
     private LocalDateTime updated_at;
+
+    public Product(String title, int price) {
+        this.title = title;
+        this.price = price;
+    }
 }

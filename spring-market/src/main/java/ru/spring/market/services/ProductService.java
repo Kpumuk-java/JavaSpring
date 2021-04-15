@@ -6,6 +6,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
+import ru.spring.market.builders.ProductBuild;
 import ru.spring.market.dto.ProductDto;
 import ru.spring.market.model.Product;
 import ru.spring.market.repositories.ProductRepository;
@@ -51,9 +52,10 @@ public class ProductService  {
             Product product = productRepository.save(productRepository.findById(productDto.getId()).get());
             return new ProductDto(product);
         }
-        Product product = new Product();
-        product.setTitle(productDto.getTitle());
-        product.setPrice(productDto.getPrice());
+        Product product = new ProductBuild()
+                .setTitle(productDto.getTitle())
+                .setPrice(productDto.getPrice())
+                .build();
         product = productRepository.save(product);
         return new ProductDto(product);
     }
