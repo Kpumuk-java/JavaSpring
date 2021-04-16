@@ -1,13 +1,11 @@
-angular.module('app').controller('orderConfirmationController', function ($scope, $http, $location) {
+angular.module('app').controller('orderConfirmationController', function ($scope, $http, $location, $localStorage) {
     const contextPath = 'http://localhost:8189/market';
 
-    $scope.cartContentRequest = function () {
-        $http({
-            url: contextPath + '/api/v1/cart',
-            method: 'GET'
-        }).then(function (response) {
-            $scope.Cart = response.data;
-        });
+    $scope.showCart = function () {
+        $http.get(contextPath + '/api/v1/cart/' + $localStorage.marketCartUuid)
+            .then(function (response) {
+                $scope.Cart = response.data;
+            });
     };
 
     $scope.submitOrder = function () {
@@ -16,6 +14,7 @@ angular.module('app').controller('orderConfirmationController', function ($scope
                 url: contextPath + '/api/v1/orders',
                 method: 'POST',
                 params: {
+                    cartUuid: $localStorage.marketCartUuid,
                     address: $scope.order_info.address
                 }
             }).then(function (response) {
@@ -27,5 +26,5 @@ angular.module('app').controller('orderConfirmationController', function ($scope
     }
 
 
-    $scope.cartContentRequest();
+    $scope.showCart();
 });

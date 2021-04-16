@@ -1,13 +1,9 @@
 package ru.spring.market.policy;
 
-
-import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.spring.market.exceptions_handling.ResourceNotFoundException;
-import ru.spring.market.model.Cart;
-import ru.spring.market.model.CartItem;
-import ru.spring.market.model.Product;
+import ru.spring.market.model.*;
 import ru.spring.market.services.CartService;
 import ru.spring.market.services.ProductService;
 
@@ -22,9 +18,14 @@ public class CartProductPolicy {
 
     @Transactional
     public void addToCart(UUID cartId, Long productId) {
-        Product p = productService.findProductById(productId).orElseThrow(() -> new ResourceNotFoundException("Unable to add product with id: " + productId + " to cart. Product doesn't exist"));
         Cart cart = cartService.findById(cartId).orElseThrow(() -> new ResourceNotFoundException("Unable to find cart with id: " + cartId));;
+        CartItem cartItem = cart.getItemByProductId(productId);
+        if (cartItem != null) {
+            cartItem.incrementQuantity();
+            cart.recalculate();
+            return;
+        }
+        Product p = productService.findProductById(productId).orElseThrow(() -> new ResourceNotFoundException("Unable to add product with id: " + productId + " to cart. Product doesn't exist"));
         cart.add(new CartItem(p));
     }
-
 }

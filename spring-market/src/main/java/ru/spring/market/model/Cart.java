@@ -42,18 +42,32 @@ public class Cart {
     }
 
     public void clear() {
+        for (CartItem ci : items) {
+            ci.setCart(null);
+        }
         items.clear();
         recalculate();
     }
 
     public void delete(Long productId) {
         Iterator<CartItem> iterator = items.iterator();
+        CartItem cartItem;
         while (iterator.hasNext()) {
-            if (iterator.next().getProduct().getId().equals(productId)) {
-                iterator.remove();
+            cartItem = iterator.next();
+            if (cartItem.getProduct().getId().equals(productId)) {
+                cartItem.setCart(null);
                 recalculate();
                 return;
             }
         }
+    }
+
+    public CartItem getItemByProductId (Long productId) {
+        for (CartItem ci : items) {
+            if (ci.getId().equals(productId)) {
+                return ci;
+            }
+        }
+        return null;
     }
 }

@@ -12,19 +12,19 @@
     </tr>
     </thead>
     <tbody>
-    <tr ng-repeat="oi in Cart.items">
-        <td>{{oi.productTitle}}</td>
-        <td>{{oi.pricePerProduct}}</td>
+    <tr ng-repeat="ci in Cart.items">
+        <td>{{ci.productTitle}}</td>
+        <td>{{ci.pricePerProduct}}</td>
         <td>
-            <button class="btn btn-danger" ng-click="decrementQuantity(oi)">-</button>
+            <button class="btn btn-danger" ng-click="decrementQuantity(ci.productId)">-</button>
         </td>
-        <td>{{oi.quantity}}</td>
+        <td>{{ci.quantity}}</td>
         <td>
-            <button class="btn btn-danger" ng-click="incrementQuantity(oi.id)">+</button>
+            <button class="btn btn-danger" ng-click="incrementQuantity(ci.productId)">+</button>
         </td>
-        <td>{{oi.price}}</td>
+        <td>{{ci.price}}</td>
         <td>
-            <button class="btn btn-danger" ng-click="deleteProductInCartById(oi.id)">Удалить товар
+            <button class="btn btn-danger" ng-click="deleteProductInCartById(ci.productId)">Удалить товар
             </button>
         </td>
     </tr>

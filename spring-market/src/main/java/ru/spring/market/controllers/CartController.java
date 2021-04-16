@@ -34,6 +34,11 @@ public class CartController {
         cartProductPolicy.addToCart(uuid, productId);
     }
 
+    @PostMapping("/add")
+    public void incrementProductToCart(@RequestParam UUID uuid, @RequestParam(name = "product_id") Long productId) {
+        cartProductPolicy.addToCart(uuid, productId);
+    }
+
     @PostMapping("/clear")
     public void clearCart (@RequestParam UUID uuid) {
         cartService.clearCart(uuid);
