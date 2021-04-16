@@ -5,10 +5,9 @@ import org.springframework.web.bind.annotation.*;
 import ru.spring.market.dto.CartDto;
 import ru.spring.market.exceptions_handling.ResourceNotFoundException;
 import ru.spring.market.model.Cart;
+import ru.spring.market.policy.CartProductPolicy;
 import ru.spring.market.services.CartService;
-import ru.spring.market.services.ProductService;
 
-import javax.websocket.server.PathParam;
 import java.util.UUID;
 
 @RestController
@@ -16,6 +15,7 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class CartController {
     private final CartService cartService;
+    private final CartProductPolicy cartProductPolicy;
 
     @PostMapping
     public UUID createNewCart() {
@@ -31,7 +31,7 @@ public class CartController {
 
     @PostMapping("/add")
     public void addProductToCart(@RequestParam UUID uuid, @RequestParam(name = "product_id") Long productId) {
-        cartService.addToCart(uuid, productId);
+        cartProductPolicy.addToCart(uuid, productId);
     }
 
     @PostMapping("/clear")

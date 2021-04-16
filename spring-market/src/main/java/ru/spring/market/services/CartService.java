@@ -16,7 +16,6 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class CartService {
     private final CartRepository cartRepository;
-    private final ProductService productService;
 
     public Cart save(Cart cart) {
         return cartRepository.save(cart);
@@ -26,12 +25,6 @@ public class CartService {
         return cartRepository.findById(id);
     }
 
-    @Transactional
-    public void addToCart(UUID cartId, Long productId) {
-        Product p = productService.findProductById(productId).orElseThrow(() -> new ResourceNotFoundException("Unable to add product with id: " + productId + " to cart. Product doesn't exist"));
-        Cart cart = findById(cartId).orElseThrow(() -> new ResourceNotFoundException("Unable to find cart with id: " + cartId));;
-        cart.add(new CartItem(p));
-    }
 
     @Transactional
     public void clearCart (UUID cartId) {
@@ -41,7 +34,7 @@ public class CartService {
 
     @Transactional
     public void delete(UUID cartId, Long productId) {
-        Cart cart = findById(cartId).orElseThrow(() -> new ResourceNotFoundException("Cart not found"));
+        Cart cart = findById(cartId).orElseThrow(() -> new ResourceNotFoundException("Cart not found. Unable to delete product with id: " + productId + " to cart"));
         cart.delete(productId);
     }
 }

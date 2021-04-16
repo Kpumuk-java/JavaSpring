@@ -6,7 +6,6 @@ import org.hibernate.annotations.GenericGenerator;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
-import javax.swing.text.html.HTMLEditorKit;
 import java.util.Iterator;
 import java.util.List;
 import java.util.UUID;
